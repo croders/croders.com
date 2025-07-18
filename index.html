@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>croders</title>
+    <link rel="preload" href="./spacegrotesk.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <style>
+        @font-face {
+            font-family: 'Space Grotesk';
+            font-style: normal;
+            font-weight: 300 700; 
+            font-display: swap;
+            src: url('./spacegrotesk.ttf') format('truetype-variations');
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #f0f0f0;
+            font-family: 'Space Grotesk', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .logo-svg {
+            width: 120px;
+            height: auto;
+        }
+
+        .logo-svg path {
+            fill: #ffffff;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 500;
+            line-height: 1.2;
+            min-height: 3.6rem;
+            color: #ffffff;
+            margin: 0;
+            letter-spacing: 2px;
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        
+        .typing-effect {
+            border-right: 4px solid #ffffff;
+            animation: blink 0.75s step-end infinite;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: #888;
+            margin-top: 1rem;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .tagline.visible {
+             opacity: 1;
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: #ffffff; }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.2rem;
+                min-height: 2.64rem;
+            }
+            .logo-svg {
+                width: 100px;
+            }
+            .tagline {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="logo-svg">
+            <svg viewBox="0 0 396 396" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M56.6777 216.057C46.9146 206.294 46.9146 190.465 56.6777 180.702L138.702 98.6776C148.465 88.9145 164.294 88.9145 174.057 98.6776C183.82 108.441 183.82 124.27 174.057 134.033L92.033 216.057C82.2699 225.82 66.4408 225.82 56.6777 216.057Z" fill="black" fill-opacity="0.7"/>
+                <path d="M56.6777 180.678C46.9146 190.441 46.9146 206.27 56.6777 216.033L138.702 298.057C148.465 307.821 164.294 307.821 174.057 298.057C183.82 288.294 183.82 272.465 174.057 262.702L92.033 180.678C82.2699 170.915 66.4408 170.915 56.6777 180.678Z" fill="black" fill-opacity="0.8"/>
+                <path d="M339.057 216.057C348.821 206.294 348.821 190.465 339.057 180.702L257.033 98.6776C247.27 88.9145 231.441 88.9145 221.678 98.6776C211.915 108.441 211.915 124.27 221.678 134.033L303.702 216.057C313.465 225.82 329.294 225.82 339.057 216.057Z" fill="black" fill-opacity="0.7"/>
+                <path d="M339.057 180.678C348.821 190.441 348.821 206.27 339.057 216.033L257.033 298.057C247.27 307.821 231.441 307.821 221.678 298.057C211.915 288.294 211.915 272.465 221.678 262.702L303.702 180.678C313.465 170.915 329.294 170.915 339.057 180.678Z" fill="black" fill-opacity="0.8"/>
+            </svg>
+        </div>
+        
+        <h1 id="brand"></h1>
+        
+        <p class="tagline" id="tagline">Croatian Talent, Swiss Precision.</p>
+
+    </div>
+
+    <script>
+        const textToType = "croders";
+        const typingSpeed = 150;
+        const typingElement = document.getElementById('brand');
+        const taglineElement = document.getElementById('tagline');
+
+        let charIndex = 0;
+
+        function type() {
+            if (charIndex < textToType.length) {
+                typingElement.textContent += textToType.charAt(charIndex);
+                charIndex++;
+                setTimeout(type, typingSpeed);
+            } else {
+                typingElement.classList.add('typing-effect');
+                taglineElement.classList.add('visible');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            setTimeout(type, 500);
+        });
+    </script>
+
+</body>
+</html>
